@@ -21,6 +21,7 @@ const sections = [
       { field: "category", label: "หมวดวิชา", required: true, allowed: "general, department หรือ activity" },
       { field: "fixed", label: "วันและคาบที่กำหนด", required: false, allowed: "ช่วงวันและคาบ หรือเว้นว่าง" },
       { field: "roomType", label: "ประเภทห้อง", required: false, allowed: "computer, lab, computerOrLab, general หรือเว้นว่าง" },
+      { field: "roomDescription", label: "คำอธิบายห้องจากไฟล์ต้นทาง", required: false, allowed: "ข้อความ หรือเว้นว่าง" },
     ],
     uploadFields: [
       { field: "courseCode", label: "Course Code", required: true, allowed: "ข้อความ" },

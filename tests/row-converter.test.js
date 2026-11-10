@@ -26,6 +26,15 @@ test("F1 rows convert to the expected groups, courses, teachers, and unavailable
   assert.equal(input.groups.length, 6);
   assert.equal(input.courses.length, 33);
   assert.equal(input.teachers.length, 5);
+  assert.deepEqual(input.rooms.map(({ name, type }) => [name, type]), [
+    ["COM1", "computer"],
+    ["COM2", "computer"],
+    ["COM3", "computer"],
+    ["COM4", "computer"],
+    ["LAB1", "lab"],
+    ["LAB2", "lab"],
+  ]);
+  assert.ok(input.off.some((item) => item.section === "rooms"));
   assert.deepEqual(
     Object.fromEntries([...new Set(input.courses.map((course) => course.year))]
       .map((year) => [year, input.courses.filter((course) => course.year === year)
@@ -48,6 +57,35 @@ test("F1 rows convert to the expected groups, courses, teachers, and unavailable
   assert.equal(input.confirmed, false);
   assert.equal(input.courses[0].source.confirmed, false);
   assert.equal(input.review.filter((item) => item.field === "category").length, 3);
+  assert.deepEqual(validateInput(input), input.review);
+});
+
+test("authoritative Thai subject workbook preserves room descriptions and room types", async () => {
+  const { input, warnings } = await convertFixture("F1/source-thai-original.xlsx");
+  assert.equal(input.groups.length, 6);
+  assert.equal(input.courses.length, 33);
+  assert.deepEqual(input.rooms.map(({ name, type }) => [name, type]), [
+    ["COM1", "computer"],
+    ["COM2", "computer"],
+    ["COM3", "computer"],
+    ["COM4", "computer"],
+    ["LAB1", "lab"],
+    ["LAB2", "lab"],
+  ]);
+  assert.ok(input.off.some((item) => item.section === "rooms"));
+  assert.deepEqual(warnings, []);
+  assert.equal(input.courses.find((course) => course.code.replace(/\s/gu, "") === "21909-1001").roomType, "lab");
+  assert.equal(input.courses.find((course) => course.code.replace(/\s/gu, "") === "21909-1004").roomType, "computer");
+  assert.equal(input.courses.find((course) => course.code.replace(/\s/gu, "") === "21909-1011").roomType, "computerOrLab");
+  assert.equal(
+    input.courses.find((course) => course.code.replace(/\s/gu, "") === "21909-1001").roomDescription,
+    "ใช้ห้องปฏิบัติการ",
+  );
+  assert.equal(
+    input.courses.find((course) => course.code.replace(/\s/gu, "") === "21909-1011").roomDescription,
+    "ใช้ห้องคอมพิวเตอร์หรือห้องปฏิบัติการ",
+  );
+  assert.equal(input.courses.find((course) => course.code.replace(/\s/gu, "") === "20000-1101").roomDescription, "ห้องเรียนภาษาไทย");
   assert.deepEqual(validateInput(input), input.review);
 });
 

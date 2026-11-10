@@ -1,6 +1,7 @@
 "use strict";
 
 const http = require("node:http");
+const fs = require("node:fs");
 const { createHash, randomUUID } = require("node:crypto");
 const path = require("node:path");
 const { analyzeInput } = require("./engine/analysis");
@@ -26,6 +27,13 @@ const {
 
 const defaultDatabasePath = path.join(__dirname, "data", "timetablemaker.sqlite");
 const maxJsonBytes = 30 * 1024 * 1024;
+const publicDirectory = path.join(__dirname, "public");
+const staticFiles = new Map([
+  ["/", ["index.html", "text/html; charset=utf-8"]],
+  ["/index.html", ["index.html", "text/html; charset=utf-8"]],
+  ["/styles.css", ["styles.css", "text/css; charset=utf-8"]],
+  ["/app.js", ["app.js", "text/javascript; charset=utf-8"]],
+]);
 const idPattern = /^[A-Za-z0-9-]+$/u;
 const errorMessages = {
   bad_input: "ข้อมูลไม่ถูกต้อง กรุณาตรวจสอบแล้วลองอีกครั้ง",
@@ -147,6 +155,16 @@ function sendDownload(response, buffer, filename, contentType) {
   response.end(buffer);
 }
 
+function sendStaticFile(response, file, contentType) {
+  const content = fs.readFileSync(path.join(publicDirectory, file));
+  response.writeHead(200, {
+    "content-type": contentType,
+    "content-length": content.length,
+    "cache-control": "no-cache",
+  });
+  response.end(content);
+}
+
 function mapError(error, logger, response) {
   if (error instanceof WorkbookReadError) {
     sendError(response, error.code, error.message);
@@ -173,6 +191,12 @@ function createServer({
       const rawPath = String(request.url ?? "/").split("?", 1)[0];
       const url = new URL(request.url, "http://127.0.0.1");
       const pathname = rawPath;
+
+      const staticFile = staticFiles.get(pathname);
+      if (request.method === "GET" && staticFile) {
+        sendStaticFile(response, ...staticFile);
+        return;
+      }
 
       if (request.method === "GET" && pathname === "/api/health") {
         sendJson(response, 200, { ok: true, version: require("./package.json").version });

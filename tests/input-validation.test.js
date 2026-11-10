@@ -17,6 +17,18 @@ test("F1 and F2 inputs pass validation", () => {
   assert.deepEqual(validateInput(readProblem("F2")), []);
 });
 
+test("room inventory may be retained while room constraints are turned off", () => {
+  const problem = structuredClone(readProblem("F1"));
+  problem.rooms = [{
+    id: "room-com1",
+    name: "COM1",
+    type: "computer",
+    size: "",
+    unavailable: [],
+  }];
+  assert.deepEqual(validateInput(problem), []);
+});
+
 const brokenInputs = [
   {
     name: "non-positive course periods",

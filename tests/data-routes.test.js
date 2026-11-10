@@ -96,6 +96,10 @@ test("upload proposal and pasted F1 course rows convert through the same importe
   }).input;
   assert.deepEqual(imported.groups, expected.groups);
   assert.deepEqual(imported.courses, expected.courses);
+  assert.deepEqual(imported.rooms, expected.rooms);
+  assert.deepEqual(imported.rooms.map((room) => room.name), [
+    "COM1", "COM2", "COM3", "COM4", "LAB1", "LAB2",
+  ]);
 });
 
 test("workbook imports deduplicate by content and can be deleted or reset", async (t) => {

@@ -22,5 +22,13 @@
       "minPeriods": 30,
       "maxPeriods": 38
     }
-  }
+  },
+  "roomInventory": [
+    { "id": "r-com1", "name": "COM1", "type": "computer", "size": "", "unavailable": [] },
+    { "id": "r-com2", "name": "COM2", "type": "computer", "size": "", "unavailable": [] },
+    { "id": "r-com3", "name": "COM3", "type": "computer", "size": "", "unavailable": [] },
+    { "id": "r-com4", "name": "COM4", "type": "computer", "size": "", "unavailable": [] },
+    { "id": "r-lab1", "name": "LAB1", "type": "lab", "size": "", "unavailable": [] },
+    { "id": "r-lab2", "name": "LAB2", "type": "lab", "size": "", "unavailable": [] }
+  ]
 }

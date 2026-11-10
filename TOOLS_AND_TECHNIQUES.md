@@ -17,6 +17,7 @@ jointly models lesson timing, teachers, rooms, and workload rather than requirin
 | Area | Used | Current status |
 |---|---|---|
 | Application runtime | Node.js 24.22.0, plain JavaScript | HTTP app, importer, input analysis, and independent checker |
+| Browser frontend | Static HTML, CSS, and vanilla JavaScript served by `node:http` | Thai Data, Generate, and Results workflow; same-origin requests; no frontend framework |
 | Scheduling runtime | Python 3.12.3 with OR-Tools CP-SAT 9.15.6755 | Production scheduler, pinned in `requirements.txt`; launched locally by Node.js |
 | PDF export runtime | LibreOffice headless | Converts the ExcelJS-generated group sheets to PDF; uses the installed Noto Sans Thai font in this environment |
 | Package scripts | npm 11.19.1 | `npm start` starts the app; `npm test` runs tests |
@@ -213,3 +214,7 @@ rebuilt in Node.js. Python is now used only as the local OR-Tools solver backend
   at 30 MB. Added template and guide generation from a shared field definition. The route tests verify upload and
   paste handling, F1 course-row parity, template headers, all documented error codes, and the complete feasible-run
   workflow. Settings and functional AI remain optional T25 work.
+- Initial frontend: added a Thai same-origin browser interface for data editing/import/review, feasibility checks,
+  asynchronous generation, timetable views, reports, run statistics, assumptions, and history. Static asset routes
+  and navigation were browser-checked; an F2 run was exercised through the backend and displayed in the UI.
+  Automated tests verify static asset delivery, while full manual review with real imported school data remains.

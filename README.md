@@ -42,6 +42,8 @@ The partner UI can use the routes in the approved `all_tableplan/restart/app/rou
 
 The server binds only to `127.0.0.1`; uploaded workbooks and timetable data are processed and stored locally.
 Schedules are checked by the independent JavaScript checker before results are saved.
+The same server serves the Thai browser interface at `/`; the UI uses same-origin requests, so no separate CORS
+configuration is needed for the bundled frontend.
 
 Run tests, including the dataset-literal scan, with:
 
@@ -78,7 +80,12 @@ to export one landscape PDF page per group; the F1 first page was rendered and v
 and visible course codes. T23 adds the planned localhost route contracts, structured Thai error responses, persisted
 editable input, and run-result operations. T24 adds pasted spreadsheet rows, workbook templates, and a field guide
 from one shared definition; pasted F1 course rows match the upload importer. Optional T25 AI and settings are not
-implemented. No partner UI is included in this repository yet.
+implemented. An initial Thai browser interface is now included with Data, Generate, and Results pages; Results
+contains Timetable, Report, Statistics, and Run History tabs. The F2 sample was exercised through the local UI and
+backend, but the new interface still needs broader user review and manual testing with imported F1 data.
 Task checkmarks remain owner-controlled.
 The runtime `data/` directory is ignored by Git; `words.json` and `defaults.json` are shipped
 configuration, not runtime data.
+Course imports retain the original room description and inferred room type. When a workbook requests
+computer or lab rooms, the source guideline's COM1-COM4 and LAB1-LAB2 inventory is added automatically
+and shown in the Rooms section. Room constraints remain off until explicitly enabled.

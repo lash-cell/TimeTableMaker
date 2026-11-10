@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f6f2">
+    <title>TimeTableMaker</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="TimeTableMaker หน้าหลัก">
+        <span class="brand-mark">T</span>
+        <span><strong>TimeTableMaker</strong><small>จัดตารางสอนในเครื่อง</small></span>
+      </a>
+      <nav class="main-nav" aria-label="เมนูหลัก">
+        <button class="nav-button active" data-page="data">ข้อมูล</button>
+        <button class="nav-button" data-page="generate">จัดตาราง</button>
+        <button class="nav-button" data-page="results">ผลลัพธ์</button>
+      </nav>
+      <div id="system-status" class="system-status"><span class="status-dot"></span><span>กำลังเชื่อมต่อ</span></div>
+    </header>
+
+    <main>
+      <section id="page-data" class="page active">
+        <div class="page-heading">
+          <div>
+            <p class="eyebrow">ขั้นตอนที่ 1 · เตรียมข้อมูล</p>
+            <h1>ข้อมูลตารางสอน</h1>
+            <p class="muted">ตรวจสอบและแก้ไขข้อมูลก่อนยืนยันเพื่อจัดตาราง</p>
+          </div>
+          <div class="button-row">
+            <label class="button secondary" for="upload-file">นำเข้า Excel</label>
+            <input id="upload-file" type="file" accept=".xlsx" hidden>
+            <button id="open-paste" class="button secondary">วางข้อมูล</button>
+            <a class="button secondary" href="/api/data/template">ดาวน์โหลดแบบฟอร์ม</a>
+            <button id="open-guide" class="button secondary">คู่มือข้อมูล</button>
+          </div>
+        </div>
+
+        <div class="card data-card">
+          <div class="section-tabs" role="tablist" aria-label="หมวดข้อมูล">
+            <button class="section-tab active" data-section="groups">กลุ่มเรียน <span id="count-groups" class="count"></span></button>
+            <button class="section-tab" data-section="courses">รายวิชา <span id="count-courses" class="count"></span></button>
+            <button class="section-tab" data-section="teachers">ผู้สอน <span id="count-teachers" class="count"></span></button>
+            <button class="section-tab" data-section="rooms">ห้องเรียน <span id="count-rooms" class="count"></span></button>
+            <button class="section-tab" data-section="time">เวลาและขีดจำกัด</button>
+          </div>
+          <div class="section-toolbar">
+            <div>
+              <h2 id="section-title">กลุ่มเรียน</h2>
+              <p id="section-description" class="muted"></p>
+            </div>
+            <div class="button-row">
+              <label id="rooms-toggle-wrap" class="switch-wrap hidden"><input id="rooms-enabled" type="checkbox"> ใช้กฎห้องเรียน</label>
+              <button id="edit-time" class="button secondary hidden">แก้ไขเวลา</button>
+              <button id="add-record" class="button primary">เพิ่มรายการ</button>
+            </div>
+          </div>
+          <div id="data-table-wrap" class="table-wrap"></div>
+        </div>
+
+        <div class="review-layout">
+          <section class="card review-card">
+            <div class="card-heading">
+              <div><p class="eyebrow">ตรวจสอบก่อนจัดตาราง</p><h2>รายการที่ต้องตรวจ</h2></div>
+              <span id="review-count" class="pill warning">0 รายการ</span>
+            </div>
+            <div id="review-list" class="review-list"></div>
+          </section>
+          <aside class="card confirm-card">
+            <div class="eyebrow">พร้อมสำหรับขั้นถัดไป?</div>
+            <h2 id="confirmation-title">ตรวจข้อมูลก่อนยืนยัน</h2>
+            <p id="confirmation-copy" class="muted"></p>
+            <button id="confirm-data" class="button primary full-width">ยืนยันข้อมูล</button>
+            <p class="small muted">การแก้ไขข้อมูลจะยกเลิกการยืนยันและต้องตรวจใหม่</p>
+          </aside>
+        </div>
+      </section>
+
+      <section id="page-generate" class="page">
+        <div class="page-heading">
+          <div><p class="eyebrow">ขั้นตอนที่ 2 · ตรวจและจัดตาราง</p><h1>จัดตารางสอน</h1><p class="muted">ตรวจความเป็นไปได้ก่อน แล้วจึงเริ่มตัวแก้โจทย์</p></div>
+        </div>
+        <div class="generate-grid">
+          <section class="card flow-card">
+            <div class="step-number">01</div>
+            <p class="eyebrow">ตรวจสอบก่อน</p>
+            <h2>ข้อมูลนี้จัดตารางได้หรือไม่?</h2>
+            <p class="muted">วิเคราะห์จำนวนคาบ กลุ่มเรียน ภาระสอน และข้อจำกัดเบื้องต้น</p>
+            <button id="check-input" class="button secondary">ตรวจความเป็นไปได้</button>
+            <div id="analysis-result" class="analysis-result empty-state">กดปุ่มเพื่อตรวจสอบข้อมูล</div>
+          </section>
+          <section class="card flow-card">
+            <div class="step-number">02</div>
+            <p class="eyebrow">สร้างตาราง</p>
+            <h2>ค้นหาตารางที่ผ่านข้อกำหนด</h2>
+            <p class="muted">ใช้ CP-SAT ในเครื่องและตรวจผลซ้ำด้วยตัวตรวจสอบอิสระ</p>
+            <div class="button-row">
+              <button id="start-run" class="button primary">เริ่มจัดตาราง</button>
+              <button id="cancel-run" class="button danger hidden">ยกเลิก</button>
+            </div>
+            <div id="run-progress" class="run-progress hidden">
+              <div class="progress-line"><span class="spinner"></span><span id="run-progress-text">กำลังค้นหาตาราง…</span></div>
+              <div class="progress-track"><span></span></div>
+              <p id="run-elapsed" class="small muted"></p>
+            </div>
+            <div id="run-result" class="analysis-result empty-state">ยืนยันข้อมูลก่อนเริ่มจัดตาราง</div>
+            <button id="open-run-result" class="button secondary hidden">ดูผลลัพธ์</button>
+          </section>
+        </div>
+      </section>
+
+      <section id="page-results" class="page">
+        <div class="page-heading results-heading">
+          <div><p class="eyebrow">ขั้นตอนที่ 3 · ผลการจัดตาราง</p><h1>ผลลัพธ์</h1><p id="result-summary" class="muted">เลือกผลการจัดตารางจากประวัติ</p></div>
+          <div class="result-toolbar">
+            <label class="sr-only" for="run-picker">เลือกรอบจัดตาราง</label>
+            <select id="run-picker"><option value="">เลือกรอบจัดตาราง</option></select>
+            <a id="export-xlsx" class="button secondary disabled" aria-disabled="true">ส่งออก Excel</a>
+            <a id="export-pdf" class="button secondary disabled" aria-disabled="true">ส่งออก PDF</a>
+          </div>
+        </div>
+        <div class="card results-card">
+          <div class="section-tabs result-tabs" role="tablist" aria-label="ผลการจัดตาราง">
+            <button class="section-tab active" data-result-tab="timetable">ตารางเรียน</button>
+            <button class="section-tab" data-result-tab="report">รายงานตรวจสอบ</button>
+            <button class="section-tab" data-result-tab="statistics">สถิติและวิธีจัด</button>
+            <button class="section-tab" data-result-tab="history">ประวัติการจัด</button>
+          </div>
+          <section id="result-timetable" class="result-panel active">
+            <div class="section-toolbar result-filters">
+              <div class="segmented" role="group" aria-label="ประเภทตาราง">
+                <button class="kind-button active" data-kind="group">กลุ่ม</button>
+                <button class="kind-button" data-kind="teacher">ผู้สอน</button>
+                <button class="kind-button" data-kind="room">ห้อง</button>
+                <button class="kind-button" data-kind="course">รายวิชา</button>
+              </div>
+              <label id="view-key-wrap" class="key-select hidden"><span id="view-key-label">เลือกกลุ่ม</span><select id="view-key"></select></label>
+            </div>
+            <div id="timetable-content" class="table-wrap empty-state">ยังไม่มีตารางที่จัดสำเร็จ</div>
+          </section>
+          <section id="result-report" class="result-panel"><div id="report-content" class="empty-state">เลือกรอบจัดตารางเพื่อดูรายงาน</div></section>
+          <section id="result-statistics" class="result-panel"><div id="statistics-content" class="empty-state">เลือกรอบจัดตารางเพื่อดูสถิติ</div></section>
+          <section id="result-history" class="result-panel"><div id="history-content" class="empty-state">ยังไม่มีประวัติการจัดตาราง</div></section>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="record-dialog" class="modal">
+      <form id="record-form" method="dialog">
+        <div class="modal-heading"><div><p class="eyebrow">แก้ไขข้อมูล</p><h2 id="record-dialog-title"></h2></div><button class="icon-button" value="cancel" aria-label="ปิด">×</button></div>
+        <div id="record-fields" class="form-grid"></div>
+        <div class="modal-actions"><button class="button secondary" value="cancel">ยกเลิก</button><button id="save-record" class="button primary" value="save">บันทึก</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="paste-dialog" class="modal">
+      <form id="paste-form" method="dialog">
+        <div class="modal-heading"><div><p class="eyebrow">นำเข้าจากสเปรดชีต</p><h2>วางข้อมูล</h2></div><button class="icon-button" value="cancel" aria-label="ปิด">×</button></div>
+        <label>ประเภทข้อมูล<select id="paste-section"><option value="courses">รายวิชา</option><option value="teachers">ผู้สอน</option></select></label>
+        <label id="paste-year-wrap">ชั้นปี<input id="paste-year" placeholder="เช่น ปวช.1"></label>
+        <label>วางแถวที่คัดลอกจากสเปรดชีต<textarea id="paste-text" rows="8" required placeholder="แถวหัวตารางและข้อมูล โดยคั่นคอลัมน์ด้วย Tab"></textarea></label>
+        <div class="modal-actions"><button class="button secondary" value="cancel">ยกเลิก</button><button id="submit-paste" class="button primary" value="paste">ดำเนินการ</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="guide-dialog" class="modal wide-modal">
+      <div class="modal-heading"><div><p class="eyebrow">คู่มือ</p><h2>ข้อมูลที่ระบบต้องใช้</h2></div><button class="icon-button" data-close-dialog="guide-dialog" aria-label="ปิด">×</button></div>
+      <div id="guide-content"></div>
+    </dialog>
+
+    <dialog id="lesson-dialog" class="modal">
+      <div class="modal-heading"><div><p class="eyebrow">รายละเอียดคาบเรียน</p><h2 id="lesson-title"></h2></div><button class="icon-button" data-close-dialog="lesson-dialog" aria-label="ปิด">×</button></div>
+      <div id="lesson-details"></div>
+    </dialog>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
