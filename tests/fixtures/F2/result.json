@@ -1,0 +1,45 @@
+{
+  "format": 1,
+  "status": "feasible",
+  "lessons": [
+    { "id": "l-f2-1", "courseId": "c-f2-1", "groupIds": ["g-f2"], "day": 0, "start": 1, "end": 5, "teacherId": "t-f2-1", "roomId": "" },
+    { "id": "l-f2-2", "courseId": "c-f2-2", "groupIds": ["g-f2"], "day": 1, "start": 1, "end": 5, "teacherId": "t-f2-1", "roomId": "" },
+    { "id": "l-f2-3", "courseId": "c-f2-3", "groupIds": ["g-f2"], "day": 2, "start": 1, "end": 5, "teacherId": "t-f2-1", "roomId": "" },
+    { "id": "l-f2-4", "courseId": "c-f2-4", "groupIds": ["g-f2"], "day": 3, "start": 1, "end": 5, "teacherId": "t-f2-2", "roomId": "" },
+    { "id": "l-f2-5", "courseId": "c-f2-5", "groupIds": ["g-f2"], "day": 4, "start": 1, "end": 5, "teacherId": "t-f2-2", "roomId": "" }
+  ],
+  "analysis": {
+    "status": "ok",
+    "causes": [],
+    "groups": [{ "groupId": "g-f2", "needed": 25, "possibleMin": 5, "possibleMax": 40 }],
+    "teachers": { "counted": 25, "minSum": 0, "maxSum": 30 }
+  },
+  "report": {
+    "items": [
+      { "rubricId": "1.1", "result": "passed", "count": 0 },
+      { "rubricId": "1.2", "result": "passed", "count": 0 },
+      { "rubricId": "1.3", "result": "passed", "count": 0 },
+      { "rubricId": "1.4", "result": "passed", "count": 0 },
+      { "rubricId": "1.5", "result": "passed", "count": 0 },
+      { "rubricId": "1.6", "result": "notApplied", "count": 0 },
+      { "rubricId": "1.7", "result": "passed", "count": 0 },
+      { "rubricId": "1.8", "result": "passed", "count": 0 },
+      { "rubricId": "1.9", "result": "passed", "count": 0 },
+      { "rubricId": "1.10", "result": "passed", "count": 0 },
+      { "rubricId": "1.11", "result": "passed", "count": 0 },
+      { "rubricId": "1.12", "result": "passed", "count": 0 },
+      { "rubricId": "2.1", "result": "passed", "count": 0 }
+    ],
+    "violations": [],
+    "teacherLoads": [
+      { "teacherId": "t-f2-1", "periods": 15, "minPeriods": 0, "maxPeriods": 15 },
+      { "teacherId": "t-f2-2", "periods": 10, "minPeriods": 0, "maxPeriods": 15 }
+    ],
+    "causes": [],
+    "likelyCauses": []
+  },
+  "scoreHistory": [],
+  "seed": 1,
+  "assumptions": [],
+  "stats": { "steps": 0, "ms": 0, "limitHit": "", "rejections": [] }
+}

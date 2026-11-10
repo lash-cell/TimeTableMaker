@@ -1,0 +1,17 @@
+{
+  "description": "Hand-made tiny test: five three-period courses, one course fixed at period 1-3 on each weekday, two teachers.",
+  "year": "Demo Year",
+  "group": "Demo/1",
+  "courses": [
+    { "code": "DEMO-01", "name": "Monday Course", "periods": 3, "weekday": "Monday", "teacher": "Demo Teacher 1" },
+    { "code": "DEMO-02", "name": "Tuesday Course", "periods": 3, "weekday": "Tuesday", "teacher": "Demo Teacher 1" },
+    { "code": "DEMO-03", "name": "Wednesday Course", "periods": 3, "weekday": "Wednesday", "teacher": "Demo Teacher 1" },
+    { "code": "DEMO-04", "name": "Thursday Course", "periods": 3, "weekday": "Thursday", "teacher": "Demo Teacher 2" },
+    { "code": "DEMO-05", "name": "Friday Course", "periods": 3, "weekday": "Friday", "teacher": "Demo Teacher 2" }
+  ],
+  "teachers": [
+    { "name": "Demo Teacher 1", "position": "other", "minPeriods": 0, "maxPeriods": 12 },
+    { "name": "Demo Teacher 2", "position": "other", "minPeriods": 0, "maxPeriods": 12 }
+  ],
+  "rooms": "off"
+}

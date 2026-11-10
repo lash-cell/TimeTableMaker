@@ -1,0 +1,907 @@
+{
+  "format": 1,
+  "groups": [
+    {
+      "id": "g-y1-1",
+      "name": "ทค.1/1",
+      "year": "ปวช.1"
+    },
+    {
+      "id": "g-y1-2",
+      "name": "ทค.1/2",
+      "year": "ปวช.1"
+    },
+    {
+      "id": "g-y2-1",
+      "name": "ทค.2/1",
+      "year": "ปวช.2"
+    },
+    {
+      "id": "g-y2-2",
+      "name": "ทค.2/2",
+      "year": "ปวช.2"
+    },
+    {
+      "id": "g-y3-1",
+      "name": "ทค.3/1",
+      "year": "ปวช.3"
+    },
+    {
+      "id": "g-y3-2",
+      "name": "ทค.3/2",
+      "year": "ปวช.3"
+    }
+  ],
+  "courses": [
+    {
+      "id": "c-1",
+      "code": "20000 - 1101",
+      "name": "ภาษาไทยเพื่อการสื่อสาร",
+      "year": "ปวช.1",
+      "periods": 2,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 0,
+        "start": 1,
+        "end": 2
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.1",
+        "row": 4,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-2",
+      "code": "20000 - 1201",
+      "name": "ภาษาอังกฤษเพื่อการสื่อสาร",
+      "year": "ปวช.1",
+      "periods": 2,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 0,
+        "start": 3,
+        "end": 4
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.1",
+        "row": 5,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-3",
+      "code": "20000 - 1401",
+      "name": "คณิตศาสตร์พื้นฐานอาชีพ",
+      "year": "ปวช.1",
+      "periods": 2,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 1,
+        "start": 1,
+        "end": 2
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.1",
+        "row": 6,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-4",
+      "code": "20000 - 1502",
+      "name": "ประวัติศาสตร์ชาติไทย",
+      "year": "ปวช.1",
+      "periods": 2,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 1,
+        "start": 3,
+        "end": 4
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.1",
+        "row": 7,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-5",
+      "code": "20000 -1603",
+      "name": "พลศึกษาเพื่อพัฒนาสุขภาพ",
+      "year": "ปวช.1",
+      "periods": 2,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 1,
+        "start": 6,
+        "end": 7
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.1",
+        "row": 8,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-6",
+      "code": "21909 - 1001",
+      "name": "งานไฟฟ้าและอิเล็กทรอนิกส์เบื้องต้น",
+      "year": "ปวช.1",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "lab",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.1",
+        "row": 11,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-7",
+      "code": "21909 - 1002",
+      "name": "อุปกรณ์อิเล็กทรอนิกส์และวงจร",
+      "year": "ปวช.1",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "lab",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.1",
+        "row": 12,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-8",
+      "code": "21909 - 1004",
+      "name": "พื้นฐานการวิเคราะห์และออกแบบระบบ",
+      "year": "ปวช.1",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.1",
+        "row": 13,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-9",
+      "code": "21909 - 1007",
+      "name": "การใช้งานระบบปฏิบัติการ",
+      "year": "ปวช.1",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.1",
+        "row": 14,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-10",
+      "code": "21909 - 1008",
+      "name": "ระบบคอมพิวเตอร์และอุปกรณ์และอุปกรณ์ต่อพ่วง",
+      "year": "ปวช.1",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.1",
+        "row": 15,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-11",
+      "code": "21909 - 2014",
+      "name": "พื้นฐานการใช้งานระบบปฏิบัติการลีนุกซ์",
+      "year": "ปวช.1",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.1",
+        "row": 16,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-12",
+      "code": "20000 - 2001",
+      "name": "กิจกรรมลูกเสือวิสามัญ 1",
+      "year": "ปวช.1",
+      "periods": 2,
+      "kind": "theory",
+      "category": "activity",
+      "fixed": {
+        "day": 3,
+        "start": 6,
+        "end": 7
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.1",
+        "row": 17,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-13",
+      "code": "20000-1206",
+      "name": "ภาษาอังกฤษเพื่องานช่างอุตสาหกรรม",
+      "year": "ปวช.2",
+      "periods": 2,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 2,
+        "start": 1,
+        "end": 2
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.2",
+        "row": 4,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-14",
+      "code": "20000 - 1102",
+      "name": "ภาษาไทยเพื่ออาชีพ",
+      "year": "ปวช.2",
+      "periods": 2,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 2,
+        "start": 3,
+        "end": 4
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.2",
+        "row": 5,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-15",
+      "code": "21909-1010",
+      "name": "เขียนแบบอิเล็กทรอนิกส์ด้วยคอมพิวเตอร์",
+      "year": "ปวช.2",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.2",
+        "row": 8,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-16",
+      "code": "21909-1011",
+      "name": "คณิตศาสตร์คอมพิวเตอร์",
+      "year": "ปวช.2",
+      "periods": 3,
+      "kind": "theory",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computerOrLab",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.2",
+        "row": 9,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-17",
+      "code": "21909-1012",
+      "name": "ระบบฐานข้อมูลสำหรับงาน IoT",
+      "year": "ปวช.2",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.2",
+        "row": 10,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-18",
+      "code": "21909-2004",
+      "name": "ไมโครคอนโทรลเลอร์",
+      "year": "ปวช.2",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.2",
+        "row": 11,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-19",
+      "code": "21909-2009",
+      "name": "การใช้งานแอปพลิเคชันปัญญาประดิษฐ์เบื้องต้น",
+      "year": "ปวช.2",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.2",
+        "row": 12,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-20",
+      "code": "21909-2010",
+      "name": "โปรแกรมเชิงวัตถุ",
+      "year": "ปวช.2",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.2",
+        "row": 13,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-21",
+      "code": "21909-2019",
+      "name": "การใช้โปรแกรมคอมพิวเตอร์กราฟิก",
+      "year": "ปวช.2",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.2",
+        "row": 14,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-22",
+      "code": "20105-2015",
+      "name": "มัลติมีเดีย",
+      "year": "ปวช.2",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.2",
+        "row": 15,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-23",
+      "code": "20000 - 2003",
+      "name": "กิจกรรมเสริมสร้างสุจริต จิตอาสา",
+      "year": "ปวช.2",
+      "periods": 2,
+      "kind": "theory",
+      "category": "activity",
+      "fixed": {
+        "day": 3,
+        "start": 6,
+        "end": 7
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.2",
+        "row": 16,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-24",
+      "code": "20000-1202",
+      "name": "ภาษาอังกฤษโครงงานบูรณาการวิชาชีพ",
+      "year": "ปวช.3",
+      "periods": 2,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 2,
+        "start": 1,
+        "end": 2
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.3",
+        "row": 4,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-25",
+      "code": "20000-1205",
+      "name": "ภาษาอังกฤษอินเตอร์เน็ต",
+      "year": "ปวช.3",
+      "periods": 2,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 3,
+        "start": 8,
+        "end": 9
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.3",
+        "row": 5,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-26",
+      "code": "20001-1003",
+      "name": "ธุรกิจเบื้องต้น",
+      "year": "ปวช.3",
+      "periods": 3,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 2,
+        "start": 3,
+        "end": 5
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.3",
+        "row": 6,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-27",
+      "code": "21909-1003",
+      "name": "พื้นฐานอิเล็กทรอนิกส์อัจฉริยะ",
+      "year": "ปวช.3",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.3",
+        "row": 9,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-28",
+      "code": "21909-2016",
+      "name": "โปรแกรมเมเบิลลอจิกคอนโทรลเลอร์",
+      "year": "ปวช.3",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.3",
+        "row": 10,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-29",
+      "code": "21909-2022-REV",
+      "name": "โครงงานด้านช่างเทคนิคคอมพิวเตอร์ รุ่นปรับปรุง",
+      "year": "ปวช.3",
+      "periods": 4,
+      "kind": "theory",
+      "category": "department",
+      "fixed": {
+        "day": 0,
+        "start": 1,
+        "end": 4
+      },
+      "roomType": "computerOrLab",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.3",
+        "row": 11,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-30",
+      "code": "21909-2013",
+      "name": "การใช้งานโปรแกรมระบบเครือข่ายคอมพิวเตอร์",
+      "year": "ปวช.3",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.3",
+        "row": 12,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-31",
+      "code": "21909-2018",
+      "name": "เทคโนโลยีอากาศยานไร้คนขับ",
+      "year": "ปวช.3",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computerOrLab",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.3",
+        "row": 13,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-32",
+      "code": "21901-2009",
+      "name": "การสร้างเกมคอมพิวเตอร์",
+      "year": "ปวช.3",
+      "periods": 5,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.3",
+        "row": 14,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-33",
+      "code": "20000 - 2005",
+      "name": "กิจกรรมองค์การวิชาชีพ 2",
+      "year": "ปวช.3",
+      "periods": 2,
+      "kind": "theory",
+      "category": "activity",
+      "fixed": {
+        "day": 3,
+        "start": 6,
+        "end": 7
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ปวช.3",
+        "row": 15,
+        "confirmed": true
+      },
+      "extra": []
+    }
+  ],
+  "teachers": [
+    {
+      "id": "t-1",
+      "name": "คุณครู A",
+      "position": "head",
+      "minPeriods": 24,
+      "maxPeriods": 28,
+      "unavailable": [
+        {
+          "day": 2,
+          "start": 1,
+          "end": 4
+        }
+      ],
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ครู",
+        "row": 2,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "t-2",
+      "name": "คุณครู B",
+      "position": "head",
+      "minPeriods": 24,
+      "maxPeriods": 28,
+      "unavailable": [],
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ครู",
+        "row": 3,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "t-3",
+      "name": "คุณครู C",
+      "position": "instructor",
+      "minPeriods": 30,
+      "maxPeriods": 38,
+      "unavailable": [],
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ครู",
+        "row": 4,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "t-4",
+      "name": "คุณครู D",
+      "position": "instructor",
+      "minPeriods": 30,
+      "maxPeriods": 38,
+      "unavailable": [],
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ครู",
+        "row": 5,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "t-5",
+      "name": "คุณครู E",
+      "position": "instructor",
+      "minPeriods": 30,
+      "maxPeriods": 38,
+      "unavailable": [],
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ครู",
+        "row": 6,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "t-f4-6",
+      "name": "ครูเพิ่มเติม F4",
+      "position": "instructor",
+      "minPeriods": 30,
+      "maxPeriods": 38,
+      "unavailable": [],
+      "source": {
+        "how": "file",
+        "file": "F4-source.xlsx",
+        "sheet": "ครู",
+        "row": 7,
+        "confirmed": true
+      },
+      "extra": []
+    }
+  ],
+  "rooms": [],
+  "time": {
+    "days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "periodsPerDay": 11,
+    "breakPeriods": [
+      4,
+      5,
+      6
+    ],
+    "finishLimits": [
+      {
+        "year": "ปวช.1",
+        "lastPeriod": 9
+      },
+      {
+        "year": "ปวช.2",
+        "lastPeriod": 11
+      },
+      {
+        "year": "ปวช.3",
+        "lastPeriod": 11
+      }
+    ],
+    "activitySlot": {
+      "day": 3,
+      "start": 6,
+      "end": 7
+    },
+    "fromGuideline": [
+      "days",
+      "periodsPerDay",
+      "breakPeriods",
+      "finishLimits",
+      "activitySlot"
+    ]
+  },
+  "off": [
+    {
+      "section": "rooms",
+      "field": ""
+    }
+  ],
+  "review": [],
+  "confirmed": true
+}

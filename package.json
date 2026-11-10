@@ -1,0 +1,13 @@
+{
+  "name": "timetablemaker-1",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Local timetable builder",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "exceljs": "4.4.0"
+  }
+}

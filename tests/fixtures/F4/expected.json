@@ -1,0 +1,20 @@
+{
+  "counts": {
+    "groups": 6,
+    "courses": 33,
+    "teachers": 6
+  },
+  "periodsPerYear": {
+    "ปวช.1": 36,
+    "ปวช.2": 37,
+    "ปวช.3": 34
+  },
+  "newFixed": {
+    "year": "ปวช.3",
+    "day": 0,
+    "start": 1,
+    "end": 4
+  },
+  "columnsReordered": true,
+  "solvable": true
+}

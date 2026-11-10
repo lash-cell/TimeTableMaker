@@ -1,0 +1,19 @@
+{
+  "status": "feasible",
+  "counts": {
+    "groups": 1,
+    "courses": 5,
+    "teachers": 2,
+    "lessons": 5
+  },
+  "periodsPerGroup": {
+    "g-f2": 15
+  },
+  "teacherLoads": {
+    "t-f2-1": 9,
+    "t-f2-2": 6
+  },
+  "weekdaysCovered": 5,
+  "lessonsStartAtPeriod": 1,
+  "breakPeriod": 4
+}

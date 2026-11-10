@@ -1,0 +1,15 @@
+{
+  "counts": {
+    "groups": 6,
+    "courses": 33,
+    "teachers": 5
+  },
+  "periodsPerYear": {
+    "ปวช.1": 36,
+    "ปวช.2": 37,
+    "ปวช.3": 34
+  },
+  "teacherPeriodsCounted": 159,
+  "generalEducationPeriods": 21,
+  "allSourceNamesReplaced": true
+}

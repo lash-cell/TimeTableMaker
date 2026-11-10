@@ -1,0 +1,887 @@
+{
+  "format": 1,
+  "groups": [
+    {
+      "id": "g-y1-1",
+      "name": "Group 1",
+      "year": "Year-A"
+    },
+    {
+      "id": "g-y1-2",
+      "name": "Group 2",
+      "year": "Year-A"
+    },
+    {
+      "id": "g-y2-1",
+      "name": "Group 3",
+      "year": "Year-B"
+    },
+    {
+      "id": "g-y2-2",
+      "name": "Group 4",
+      "year": "Year-B"
+    },
+    {
+      "id": "g-y3-1",
+      "name": "Group 5",
+      "year": "Year-C"
+    },
+    {
+      "id": "g-y3-2",
+      "name": "Group 6",
+      "year": "Year-C"
+    }
+  ],
+  "courses": [
+    {
+      "id": "c-1",
+      "code": "X-CODE-001",
+      "name": "Fictional Course 01",
+      "year": "Year-A",
+      "periods": 2,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 0,
+        "start": 1,
+        "end": 2
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-A",
+        "row": 4,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-2",
+      "code": "X-CODE-002",
+      "name": "Fictional Course 02",
+      "year": "Year-A",
+      "periods": 2,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 0,
+        "start": 3,
+        "end": 4
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-A",
+        "row": 5,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-3",
+      "code": "X-CODE-003",
+      "name": "Fictional Course 03",
+      "year": "Year-A",
+      "periods": 2,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 1,
+        "start": 1,
+        "end": 2
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-A",
+        "row": 6,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-4",
+      "code": "X-CODE-004",
+      "name": "Fictional Course 04",
+      "year": "Year-A",
+      "periods": 2,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 1,
+        "start": 3,
+        "end": 4
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-A",
+        "row": 7,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-5",
+      "code": "X-CODE-005",
+      "name": "Fictional Course 05",
+      "year": "Year-A",
+      "periods": 2,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 1,
+        "start": 6,
+        "end": 7
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-A",
+        "row": 8,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-6",
+      "code": "X-CODE-006",
+      "name": "Fictional Course 06",
+      "year": "Year-A",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "lab",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-A",
+        "row": 11,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-7",
+      "code": "X-CODE-007",
+      "name": "Fictional Course 07",
+      "year": "Year-A",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "lab",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-A",
+        "row": 12,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-8",
+      "code": "X-CODE-008",
+      "name": "Fictional Course 08",
+      "year": "Year-A",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-A",
+        "row": 13,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-9",
+      "code": "X-CODE-009",
+      "name": "Fictional Course 09",
+      "year": "Year-A",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-A",
+        "row": 14,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-10",
+      "code": "X-CODE-010",
+      "name": "Fictional Course 10",
+      "year": "Year-A",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-A",
+        "row": 15,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-11",
+      "code": "X-CODE-011",
+      "name": "Fictional Course 11",
+      "year": "Year-A",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-A",
+        "row": 16,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-12",
+      "code": "X-CODE-012",
+      "name": "Fictional Course 12",
+      "year": "Year-A",
+      "periods": 2,
+      "kind": "theory",
+      "category": "activity",
+      "fixed": {
+        "day": 3,
+        "start": 6,
+        "end": 7
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-A",
+        "row": 17,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-13",
+      "code": "X-CODE-013",
+      "name": "Fictional Course 13",
+      "year": "Year-B",
+      "periods": 2,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 2,
+        "start": 1,
+        "end": 2
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-B",
+        "row": 4,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-14",
+      "code": "X-CODE-014",
+      "name": "Fictional Course 14",
+      "year": "Year-B",
+      "periods": 2,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 2,
+        "start": 3,
+        "end": 4
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-B",
+        "row": 5,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-15",
+      "code": "X-CODE-015",
+      "name": "Fictional Course 15",
+      "year": "Year-B",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-B",
+        "row": 8,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-16",
+      "code": "X-CODE-016",
+      "name": "Fictional Course 16",
+      "year": "Year-B",
+      "periods": 3,
+      "kind": "theory",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computerOrLab",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-B",
+        "row": 9,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-17",
+      "code": "X-CODE-017",
+      "name": "Fictional Course 17",
+      "year": "Year-B",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-B",
+        "row": 10,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-18",
+      "code": "X-CODE-018",
+      "name": "Fictional Course 18",
+      "year": "Year-B",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-B",
+        "row": 11,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-19",
+      "code": "X-CODE-019",
+      "name": "Fictional Course 19",
+      "year": "Year-B",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-B",
+        "row": 12,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-20",
+      "code": "X-CODE-020",
+      "name": "Fictional Course 20",
+      "year": "Year-B",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-B",
+        "row": 13,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-21",
+      "code": "X-CODE-021",
+      "name": "Fictional Course 21",
+      "year": "Year-B",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-B",
+        "row": 14,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-22",
+      "code": "X-CODE-022",
+      "name": "Fictional Course 22",
+      "year": "Year-B",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-B",
+        "row": 15,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-23",
+      "code": "X-CODE-023",
+      "name": "Fictional Course 23",
+      "year": "Year-B",
+      "periods": 2,
+      "kind": "theory",
+      "category": "activity",
+      "fixed": {
+        "day": 3,
+        "start": 6,
+        "end": 7
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-B",
+        "row": 16,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-24",
+      "code": "X-CODE-024",
+      "name": "Fictional Course 24",
+      "year": "Year-C",
+      "periods": 2,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 2,
+        "start": 1,
+        "end": 2
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-C",
+        "row": 4,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-25",
+      "code": "X-CODE-025",
+      "name": "Fictional Course 25",
+      "year": "Year-C",
+      "periods": 2,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 3,
+        "start": 8,
+        "end": 9
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-C",
+        "row": 5,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-26",
+      "code": "X-CODE-026",
+      "name": "Fictional Course 26",
+      "year": "Year-C",
+      "periods": 3,
+      "kind": "theory",
+      "category": "general",
+      "fixed": {
+        "day": 2,
+        "start": 3,
+        "end": 5
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-C",
+        "row": 6,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-27",
+      "code": "X-CODE-027",
+      "name": "Fictional Course 27",
+      "year": "Year-C",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-C",
+        "row": 9,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-28",
+      "code": "X-CODE-028",
+      "name": "Fictional Course 28",
+      "year": "Year-C",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-C",
+        "row": 10,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-29",
+      "code": "X-CODE-029",
+      "name": "Fictional Course 29",
+      "year": "Year-C",
+      "periods": 4,
+      "kind": "theory",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computerOrLab",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-C",
+        "row": 11,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-30",
+      "code": "X-CODE-030",
+      "name": "Fictional Course 30",
+      "year": "Year-C",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-C",
+        "row": 12,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-31",
+      "code": "X-CODE-031",
+      "name": "Fictional Course 31",
+      "year": "Year-C",
+      "periods": 4,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computerOrLab",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-C",
+        "row": 13,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-32",
+      "code": "X-CODE-032",
+      "name": "Fictional Course 32",
+      "year": "Year-C",
+      "periods": 5,
+      "kind": "practical",
+      "category": "department",
+      "fixed": null,
+      "roomType": "computer",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-C",
+        "row": 14,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "c-33",
+      "code": "X-CODE-033",
+      "name": "Fictional Course 33",
+      "year": "Year-C",
+      "periods": 2,
+      "kind": "theory",
+      "category": "activity",
+      "fixed": {
+        "day": 3,
+        "start": 6,
+        "end": 7
+      },
+      "roomType": "general",
+      "teacherId": "",
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Year-C",
+        "row": 15,
+        "confirmed": true
+      },
+      "extra": []
+    }
+  ],
+  "teachers": [
+    {
+      "id": "t-1",
+      "name": "Instructor Alpha",
+      "position": "head",
+      "minPeriods": 24,
+      "maxPeriods": 28,
+      "unavailable": [
+        {
+          "day": 2,
+          "start": 1,
+          "end": 4
+        }
+      ],
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Staff",
+        "row": 2,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "t-2",
+      "name": "Instructor Beta",
+      "position": "head",
+      "minPeriods": 24,
+      "maxPeriods": 28,
+      "unavailable": [],
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Staff",
+        "row": 3,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "t-3",
+      "name": "Instructor Gamma",
+      "position": "instructor",
+      "minPeriods": 30,
+      "maxPeriods": 38,
+      "unavailable": [],
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Staff",
+        "row": 4,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "t-4",
+      "name": "Instructor Delta",
+      "position": "instructor",
+      "minPeriods": 30,
+      "maxPeriods": 38,
+      "unavailable": [],
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Staff",
+        "row": 5,
+        "confirmed": true
+      },
+      "extra": []
+    },
+    {
+      "id": "t-5",
+      "name": "Instructor Epsilon",
+      "position": "instructor",
+      "minPeriods": 30,
+      "maxPeriods": 38,
+      "unavailable": [],
+      "source": {
+        "how": "file",
+        "file": "F5-source.xlsx",
+        "sheet": "Staff",
+        "row": 6,
+        "confirmed": true
+      },
+      "extra": []
+    }
+  ],
+  "rooms": [],
+  "time": {
+    "days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "periodsPerDay": 11,
+    "breakPeriods": [
+      4,
+      5,
+      6
+    ],
+    "finishLimits": [
+      {
+        "year": "Year-A",
+        "lastPeriod": 9
+      },
+      {
+        "year": "Year-B",
+        "lastPeriod": 11
+      },
+      {
+        "year": "Year-C",
+        "lastPeriod": 11
+      }
+    ],
+    "activitySlot": {
+      "day": 3,
+      "start": 6,
+      "end": 7
+    },
+    "fromGuideline": [
+      "days",
+      "periodsPerDay",
+      "breakPeriods",
+      "finishLimits",
+      "activitySlot"
+    ]
+  },
+  "off": [
+    {
+      "section": "rooms",
+      "field": ""
+    }
+  ],
+  "review": [],
+  "confirmed": true
+}

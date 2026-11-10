@@ -1,0 +1,27 @@
+{
+  "counts": {
+    "groups": 6,
+    "courses": 31,
+    "teachers": 5
+  },
+  "periodsPerYear": {
+    "ปวช.1": 36,
+    "ปวช.2": 34,
+    "ปวช.3": 30
+  },
+  "status": "infeasible",
+  "causes": [
+    {
+      "day": 3,
+      "period": 1
+    },
+    {
+      "day": 4,
+      "period": 1
+    }
+  ],
+  "removedCourses": [
+    "21909-1011",
+    "21909-2022"
+  ]
+}

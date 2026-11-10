@@ -1,0 +1,49 @@
+{
+  "headerSynonyms": {
+    "courseCode": ["รหัสวิชา", "รหัส", "course code", "code", "subject code"],
+    "courseName": ["รายวิชา", "ชื่อวิชา", "course name", "subject", "course title"],
+    "periodsPerWeek": ["ชั่วโมง", "ชม.", "คาบ", "จำนวนคาบ", "hours", "periods", "hrs"],
+    "kind": ["ประเภทวิชา", "ทฤษฎี/ปฏิบัติ", "course type", "type"],
+    "requirement": ["ข้อกำหนด", "เงื่อนไข", "requirement", "requirements", "condition"],
+    "roomDescription": ["ห้อง", "ห้องที่ใช้สอน", "ห้องเรียน", "room", "teaching room", "classroom"],
+    "teacherName": ["ชื่อครู", "รายชื่อครู", "ครู", "ผู้สอน", "teacher", "teacher name", "name"],
+    "position": ["ตำแหน่ง", "position", "role"],
+    "teacherNote": [
+      "ข้อกำหนด",
+      "เวลาไม่สะดวก",
+      "หมายเหตุ",
+      "requirements",
+      "availability",
+      "unavailable",
+      "note"
+    ]
+  },
+  "dayWords": {
+    "Monday": ["จันทร์", "Monday"],
+    "Tuesday": ["อังคาร", "Tuesday"],
+    "Wednesday": ["พุธ", "Wednesday"],
+    "Thursday": ["พฤหัส", "พฤหัสบดี", "Thursday"],
+    "Friday": ["ศุกร์", "Friday"]
+  },
+  "kindWords": {
+    "theory": ["ทฤษฎี", "theory"],
+    "practical": ["ปฏิบัติ", "practical"]
+  },
+  "availabilityWords": ["ต้องว่าง", "must be free", "must not be scheduled"],
+  "totalWords": ["total", "grand total", "รวม", "รวมทั้งสิ้น"],
+  "roomWords": {
+    "computer": ["คอมพิวเตอร์", "computer"],
+    "lab": ["ห้องปฏิบัติการ", "ปฏิบัติการ", "laboratory"],
+    "computerOrLab": []
+  },
+  "positionWords": {
+    "head": ["หัวหน้าแผนก", "หัวหน้างาน", "Head"],
+    "instructor": ["ครูประจำแผนก", "Instructor"]
+  },
+  "categoryWords": {
+    "general": ["รายวิชาสามัญ", "สามัญ", "General Education"],
+    "department": ["รายวิชาของแผนกวิชา", "แผนกวิชา", "Department"],
+    "activity": ["กิจกรรม", "ลูกเสือ", "activity", "scout"]
+  },
+  "skipRowWords": ["title", "header", "heading", "repeatedHeader", "total", "empty"]
+}

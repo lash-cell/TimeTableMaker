@@ -1,0 +1,112 @@
+{
+  "format": 1,
+  "groups": [
+    { "id": "g-f2", "name": "Demo/1", "year": "Demo Year" }
+  ],
+  "courses": [
+    {
+      "id": "c-f2-1",
+      "code": "DEMO-01",
+      "name": "Monday Course",
+      "year": "Demo Year",
+      "periods": 5,
+      "kind": "theory",
+      "category": "department",
+      "fixed": { "day": 0, "start": 1, "end": 5 },
+      "roomType": "",
+      "teacherId": "t-f2-1",
+      "source": { "how": "form", "confirmed": true },
+      "extra": []
+    },
+    {
+      "id": "c-f2-2",
+      "code": "DEMO-02",
+      "name": "Tuesday Course",
+      "year": "Demo Year",
+      "periods": 5,
+      "kind": "theory",
+      "category": "department",
+      "fixed": { "day": 1, "start": 1, "end": 5 },
+      "roomType": "",
+      "teacherId": "t-f2-1",
+      "source": { "how": "form", "confirmed": true },
+      "extra": []
+    },
+    {
+      "id": "c-f2-3",
+      "code": "DEMO-03",
+      "name": "Wednesday Course",
+      "year": "Demo Year",
+      "periods": 5,
+      "kind": "theory",
+      "category": "department",
+      "fixed": { "day": 2, "start": 1, "end": 5 },
+      "roomType": "",
+      "teacherId": "t-f2-1",
+      "source": { "how": "form", "confirmed": true },
+      "extra": []
+    },
+    {
+      "id": "c-f2-4",
+      "code": "DEMO-04",
+      "name": "Thursday Course",
+      "year": "Demo Year",
+      "periods": 5,
+      "kind": "theory",
+      "category": "department",
+      "fixed": { "day": 3, "start": 1, "end": 5 },
+      "roomType": "",
+      "teacherId": "t-f2-2",
+      "source": { "how": "form", "confirmed": true },
+      "extra": []
+    },
+    {
+      "id": "c-f2-5",
+      "code": "DEMO-05",
+      "name": "Friday Course",
+      "year": "Demo Year",
+      "periods": 5,
+      "kind": "theory",
+      "category": "department",
+      "fixed": { "day": 4, "start": 1, "end": 5 },
+      "roomType": "",
+      "teacherId": "t-f2-2",
+      "source": { "how": "form", "confirmed": true },
+      "extra": []
+    }
+  ],
+  "teachers": [
+    {
+      "id": "t-f2-1",
+      "name": "Demo Teacher 1",
+      "position": "other",
+      "minPeriods": 0,
+      "maxPeriods": 15,
+      "unavailable": [],
+      "source": { "how": "form", "confirmed": true },
+      "extra": []
+    },
+    {
+      "id": "t-f2-2",
+      "name": "Demo Teacher 2",
+      "position": "other",
+      "minPeriods": 0,
+      "maxPeriods": 15,
+      "unavailable": [],
+      "source": { "how": "form", "confirmed": true },
+      "extra": []
+    }
+  ],
+  "rooms": [],
+  "time": {
+    "days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "periodsPerDay": 11,
+    "breakPeriods": [4, 5, 6],
+    "finishLimits": [{ "year": "Demo Year", "lastPeriod": 9 }],
+    "activitySlot": { "day": 3, "start": 6, "end": 7 },
+    "fromGuideline": ["days", "periodsPerDay", "breakPeriods", "finishLimits", "activitySlot"]
+  },
+  "off": [{ "section": "rooms", "field": "" }],
+  "review": [],
+  "confirmed": true
+}

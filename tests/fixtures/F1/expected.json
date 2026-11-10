@@ -1,0 +1,41 @@
+{
+  "counts": {
+    "groups": 6,
+    "courses": 33,
+    "teachers": 5
+  },
+  "periodsPerYear": {
+    "ปวช.1": 36,
+    "ปวช.2": 37,
+    "ปวช.3": 34
+  },
+  "teacherUnavailable": {
+    "name": "คุณครู A",
+    "day": 2,
+    "start": 1,
+    "end": 4
+  },
+  "teacherPeriodsCounted": 159,
+  "generalEducationPeriods": 21,
+  "workloadBands": {
+    "minSum": 138,
+    "maxSum": 170
+  },
+  "impossibleCase": {
+    "removedCourses": [
+      "21909-1011",
+      "21909-2022"
+    ],
+    "status": "infeasible",
+    "causes": [
+      {
+        "day": 3,
+        "period": 1
+      },
+      {
+        "day": 4,
+        "period": 1
+      }
+    ]
+  }
+}
