@@ -51,6 +51,7 @@ npm test
 
 See [TOOLS_AND_TECHNIQUES.md](./TOOLS_AND_TECHNIQUES.md) for the actual stack, spike tools, techniques, and
 verification limitations recorded so far.
+For a frontend/AI coding handoff, see [PARTNER_AI_BRIEF.md](./PARTNER_AI_BRIEF.md).
 
 ## Current task
 
