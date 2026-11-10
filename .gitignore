@@ -2,6 +2,8 @@ node_modules/
 .venv/
 __pycache__/
 *.py[cod]
+/data/
+!/data/
 /data/*
 !/data/form-definition.js
 .env
