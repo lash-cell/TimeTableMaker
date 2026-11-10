@@ -38,6 +38,20 @@ test("OR-Tools finds and independently validates F1 within ten seconds", async (
   assert.deepEqual(checkTimetable(input, result.lessons).violations, []);
 });
 
+test("the real engine reports plan, CP-SAT search, and checker rule events", async () => {
+  const events = [];
+  const result = await generateTimetable(fixture("F2"), {
+    onProgress: (event) => events.push(event),
+  });
+
+  assert.equal(result.status, "feasible");
+  assert.ok(events.some((event) => event.phase === "Plan" && /ความเป็นไปได้/u.test(event.message)));
+  assert.ok(events.some((event) => event.phase === "Act" && /CP-SAT/u.test(event.message)));
+  assert.ok(events.some((event) => event.phase === "Validate" && event.message === "กฎ 1.1: passed"));
+  assert.ok(events.some((event) => event.phase === "Validate" && event.message === "กฎ 2.1: passed"));
+  assert.ok(events.every((event) => ["INFO", "SUCCESS", "WARNING", "ERROR"].includes(event.level)));
+});
+
 test("the whole-run time limit is reported without claiming infeasibility", async () => {
   const result = await generateTimetable(fixture("F1"), { timeLimitMs: 1 });
 

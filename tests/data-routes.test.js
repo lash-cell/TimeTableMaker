@@ -6,6 +6,7 @@ const path = require("node:path");
 const test = require("node:test");
 const ExcelJS = require("exceljs");
 const { convertMatchesToInput } = require("../lib/row-converter");
+const { validateInput } = require("../lib/input-validation");
 const { proposeMatches } = require("../lib/column-matcher");
 const { readWorkbook } = require("../lib/workbook-reader");
 const { getUploadFields } = require("../data/form-definition");
@@ -95,6 +96,60 @@ test("upload proposal and pasted F1 course rows convert through the same importe
   }).input;
   assert.deepEqual(imported.groups, expected.groups);
   assert.deepEqual(imported.courses, expected.courses);
+});
+
+test("workbook imports deduplicate by content and can be deleted or reset", async (t) => {
+  const baseUrl = await listen(t);
+  const bytes = fs.readFileSync(path.join(fixtureRoot, "F1", "source.xlsx"));
+  const upload = () => fetch(`${baseUrl}/api/data/upload`, {
+    method: "POST",
+    headers: { "x-file-name": encodeURIComponent("F1 Thai.xlsx") },
+    body: bytes,
+  });
+  const proposal = await json(await upload());
+  assert.match(proposal.sha256, /^[a-f0-9]{64}$/u);
+
+  const importedResponse = await fetch(`${baseUrl}/api/data/match`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(proposal),
+  });
+  const imported = await json(importedResponse);
+  assert.equal(imported.importReport.importedFile.fileName, "F1 Thai.xlsx");
+  assert.ok(imported.importReport.importedFile.courses > 0);
+  assert.equal(validateInput(imported).some((item) =>
+    item.field === "importId" || item.field === "source.importId"), false);
+
+  const duplicateUpload = await json(await upload());
+  assert.equal(duplicateUpload.alreadyImported, true);
+  assert.equal(duplicateUpload.import.id, imported.importReport.importedFile.id);
+  assert.equal((await json(await fetch(`${baseUrl}/api/data/imports`))).length, 1);
+
+  const duplicateApply = await json(await fetch(`${baseUrl}/api/data/match`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(proposal),
+  }));
+  assert.equal(duplicateApply.importReport.alreadyImported, true);
+  assert.equal(duplicateApply.courses.length, imported.courses.length);
+
+  const deletedResponse = await fetch(
+    `${baseUrl}/api/data/imports/${imported.importReport.importedFile.id}`,
+    { method: "DELETE" },
+  );
+  assert.equal(deletedResponse.status, 200);
+  const deleted = await json(deletedResponse);
+  assert.ok(deleted.deleted.courses > 0);
+  assert.deepEqual(deleted.input.groups, []);
+  assert.deepEqual(deleted.input.courses, []);
+  assert.deepEqual(deleted.input.teachers, []);
+  assert.deepEqual(await json(await fetch(`${baseUrl}/api/data/imports`)), []);
+
+  const uploadedAgain = await json(await upload());
+  assert.equal(uploadedAgain.alreadyImported, undefined);
+  const reset = await fetch(`${baseUrl}/api/data/reset`, { method: "POST" });
+  assert.equal(reset.status, 200);
+  assert.deepEqual(await json(await fetch(`${baseUrl}/api/data/imports`)), []);
 });
 
 test("data edit, confirm, check, run, recheck, view, history, choose, and export routes work together", async (t) => {

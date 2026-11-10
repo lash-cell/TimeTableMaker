@@ -83,6 +83,21 @@ test("runs solve outside the request handler, keep health responsive, and persis
 
   const finishedRun = await waitForRun(firstServer.baseUrl, startedRun.id, "finished");
   assert.equal(finishedRun.result.status, "feasible");
+  assert.ok(finishedRun.logs.some((entry) => entry.phase === "Plan"));
+  assert.ok(finishedRun.logs.some((entry) => entry.phase === "Act"));
+  assert.ok(finishedRun.logs.some((entry) => entry.phase === "Validate"));
+  assert.ok(finishedRun.logs.some((entry) => entry.message.includes("1.1: passed")));
+  assert.ok(finishedRun.logs.some((entry) => entry.message.includes("2.1: passed")));
+  assert.ok(finishedRun.logs.some((entry) => entry.message.includes("Validator ตรวจผลสุดท้ายผ่าน")));
+  assert.ok(finishedRun.logs.every((entry, index, entries) =>
+    index === 0 || entry.sequence > entries[index - 1].sequence));
+  const lastSequence = finishedRun.logs.at(-1).sequence;
+  const newLogsResponse = await fetch(
+    `${firstServer.baseUrl}/api/runs/${startedRun.id}?after=${lastSequence - 1}`,
+  );
+  const newLogsRun = await newLogsResponse.json();
+  assert.equal(newLogsRun.logs.length, 1);
+  assert.equal(newLogsRun.logs[0].sequence, lastSequence);
   await firstServer.close();
 
   const secondServer = await listen(t, { databasePath });
@@ -113,7 +128,9 @@ test("cancelling an active run persists cancelled and does not overwrite it late
   assert.equal((await cancelled.json()).state, "cancelled");
   await new Promise((resolve) => setTimeout(resolve, 20));
   const polled = await fetch(`${baseUrl}/api/runs/${run.id}`);
-  assert.equal((await polled.json()).state, "cancelled");
+  const cancelledRun = await polled.json();
+  assert.equal(cancelledRun.state, "cancelled");
+  assert.ok(cancelledRun.logs.some((entry) => entry.level === "WARNING" && /ยกเลิก/u.test(entry.message)));
 });
 
 test("a crashing solver marks its run failed while the server stays responsive", async (t) => {

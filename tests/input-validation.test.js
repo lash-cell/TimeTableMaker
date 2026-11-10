@@ -160,6 +160,19 @@ test("unresolved ReviewItems remain visible and block a clean validation result"
   assert.deepEqual(validateInput(problem), [existing]);
 });
 
+test("obsolete empty-section reviews are removed after the section has data", () => {
+  const problem = readProblem("F2");
+  problem.review = ["groups", "courses", "teachers"].map((section, index) => ({
+    id: `review-${index + 1}`,
+    section,
+    recordId: "",
+    field: section,
+    problem: "ต้องมีข้อมูลอย่างน้อยหนึ่งรายการ",
+    original: "[]",
+  }));
+  assert.deepEqual(validateInput(problem), []);
+});
+
 test("unknown contract fields become ReviewItems", () => {
   const problem = readProblem("F2");
   problem.extraData = "not in shapes.md";

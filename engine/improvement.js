@@ -69,6 +69,7 @@ function improveTimetable(
   seed = 1,
   deadline = Number.POSITIVE_INFINITY,
   signal,
+  onProgress,
 ) {
   const initialCheck = checkTimetable(input, lessons);
   if (initialCheck.violations.length) {
@@ -133,6 +134,20 @@ function improveTimetable(
       total: currentScore.total,
       terms: currentScore.terms,
     });
+    if (round === 1 || round % 10 === 0 || round === rounds) {
+      onProgress?.({
+        message: `ปรับปรุงตารางรอบ ${round}/${rounds}`,
+        details: {
+          round,
+          rounds,
+          total: currentScore.total,
+          terms: currentScore.terms,
+          movesTried,
+          movesAccepted,
+          movesRejected,
+        },
+      });
+    }
   }
 
   return {

@@ -104,6 +104,7 @@ function applyMatchProposal(proposal, existingInput) {
   try {
     const converted = convertMatchesToInput(proposal, {
       fileName: proposal.fileName,
+      importId: proposal.importId,
       sourceSheets: proposal.sourceSheets,
       readerReviewItems: proposal.readerReviewItems ?? [],
       existingInput,

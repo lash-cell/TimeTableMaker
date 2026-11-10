@@ -5,6 +5,17 @@ import time
 from ortools.sat.python import cp_model
 
 
+EVENT_PREFIX = "TIMETABLEMAKER_EVENT "
+
+
+def emit_event(event, **details):
+    print(
+        EVENT_PREFIX + json.dumps({"event": event, **details}, separators=(",", ":")),
+        file=sys.stderr,
+        flush=True,
+    )
+
+
 def is_off(problem, section, field=""):
     return any(
         item["section"] == section and item.get("field", "") in ("", field)
@@ -273,6 +284,15 @@ def solve(problem, time_limit_seconds, step_limit=None, relax=None):
             model.Add(sum(workload) >= teacher["minPeriods"])
             model.Add(sum(workload) <= teacher["maxPeriods"])
 
+    emit_event(
+        "model_built",
+        tasks=len(tasks),
+        candidates=len(candidates),
+        variables=len(model.Proto().variables),
+        constraints=len(model.Proto().constraints),
+        rejections=dict(sorted(rejection_counts.items())),
+    )
+
     solver = cp_model.CpSolver()
     remaining_seconds = time_limit_seconds - (time.perf_counter() - started)
     if remaining_seconds <= 0:
@@ -292,7 +312,33 @@ def solve(problem, time_limit_seconds, step_limit=None, relax=None):
     solver.parameters.random_seed = 0
     if step_limit is not None:
         solver.parameters.max_number_of_conflicts = step_limit
-    status = solver.Solve(model)
+
+    class SearchProgress(cp_model.CpSolverSolutionCallback):
+        def __init__(self):
+            super().__init__()
+            self.solutions = 0
+            self.last_event = time.perf_counter()
+
+        def on_solution_callback(self):
+            self.solutions += 1
+            now = time.perf_counter()
+            if self.solutions == 1 or self.solutions % 10 == 0 or now - self.last_event >= 2:
+                emit_event(
+                    "solution_found",
+                    solutions=self.solutions,
+                    wall_time_seconds=self.WallTime(),
+                    branches=self.NumBranches(),
+                    conflicts=self.NumConflicts(),
+                )
+                self.last_event = now
+
+    callback = SearchProgress()
+    emit_event(
+        "search_started",
+        time_limit_seconds=remaining_seconds,
+        step_limit=step_limit,
+    )
+    status = solver.Solve(model, callback)
     status_names = {
         cp_model.OPTIMAL: "feasible",
         cp_model.FEASIBLE: "feasible",

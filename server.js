@@ -1,6 +1,7 @@
 "use strict";
 
 const http = require("node:http");
+const { createHash, randomUUID } = require("node:crypto");
 const path = require("node:path");
 const { analyzeInput } = require("./engine/analysis");
 const { checkTimetable } = require("./engine/checker");
@@ -9,7 +10,7 @@ const { buildReport } = require("./engine/report");
 const { createExcelBuffer } = require("./output/excel");
 const { createPdfBuffer } = require("./output/pdf");
 const { buildView } = require("./output/views");
-const { validateInput } = require("./lib/input-validation");
+const { removeResolvedEmptySectionReviews, validateInput } = require("./lib/input-validation");
 const { WorkbookReadError } = require("./lib/workbook-reader");
 const { RunManager } = require("./server/run-manager");
 const { RunStore } = require("./server/run-store");
@@ -126,7 +127,13 @@ function requireRun(runs, id) {
 }
 
 function requireFeasible(run) {
-  if (run.state !== "finished" || run.result?.status !== "feasible") {
+  const violations = run.result?.report?.violations;
+  if (
+    run.state !== "finished" ||
+    run.result?.status !== "feasible" ||
+    !Array.isArray(violations) ||
+    violations.length > 0
+  ) {
     throw workflowError("not_feasible", errorMessages.not_feasible);
   }
 }
@@ -172,8 +179,32 @@ function createServer({
         return;
       }
 
+      if (request.method === "GET" && pathname === "/api/data/imports") {
+        sendJson(response, 200, store.listImports());
+        return;
+      }
+
+      if (request.method === "POST" && pathname === "/api/data/reset") {
+        const input = store.resetData(emptyInput());
+        sendJson(response, 200, input);
+        return;
+      }
+
+      const deleteImportMatch = /^\/api\/data\/imports\/([^/]+)$/u.exec(pathname);
+      if (request.method === "DELETE" && deleteImportMatch) {
+        const id = decodedId(deleteImportMatch[1]);
+        const deleted = store.deleteImport(id, emptyInput());
+        if (!deleted) throw workflowError("not_found", errorMessages.not_found);
+        sendJson(response, 200, deleted);
+        return;
+      }
+
       if (request.method === "GET" && pathname === "/api/data") {
-        sendJson(response, 200, store.getInput() ?? emptyInput());
+        const input = store.getInput() ?? emptyInput();
+        const reviewCount = Array.isArray(input.review) ? input.review.length : null;
+        removeResolvedEmptySectionReviews(input);
+        if (reviewCount !== null && input.review.length !== reviewCount) store.saveInput(input);
+        sendJson(response, 200, input);
         return;
       }
 
@@ -193,8 +224,14 @@ function createServer({
       if (request.method === "POST" && pathname === "/api/data/upload") {
         const fileName = decodedHeader(request.headers["x-file-name"]);
         const bytes = await readBody(request, 30 * 1024 * 1024);
+        const sha256 = createHash("sha256").update(bytes).digest("hex");
+        const existing = store.findImportByHash(sha256);
+        if (existing) {
+          sendJson(response, 200, { alreadyImported: true, import: existing });
+          return;
+        }
         const proposal = await proposeWorkbook(bytes, fileName);
-        sendJson(response, 200, proposal);
+        sendJson(response, 200, { ...proposal, sha256, importId: randomUUID() });
         return;
       }
 
@@ -207,8 +244,47 @@ function createServer({
       if (request.method === "POST" && pathname === "/api/data/match") {
         const proposal = await readJsonBody(request);
         const converted = applyMatchProposal(proposal, store.getInput() ?? emptyInput());
-        store.saveInput(converted.input);
-        sendJson(response, 200, converted.input);
+        let input = converted.input;
+        let importedFile = null;
+        if (proposal.sha256 !== undefined || proposal.importId !== undefined) {
+          if (!/^[a-f0-9]{64}$/u.test(proposal.sha256 ?? "") || !idPattern.test(proposal.importId ?? "")) {
+            throw workflowError("bad_input", errorMessages.bad_input);
+          }
+          const saved = store.saveImportedInput(converted.input, {
+            id: proposal.importId,
+            sha256: proposal.sha256,
+            fileName: proposal.fileName,
+            importedAt: new Date().toISOString(),
+            groups: converted.input.groups.filter((group) => group.importId === proposal.importId).length,
+            courses: converted.input.courses.filter((course) => course.source?.importId === proposal.importId).length,
+            teachers: converted.input.teachers.filter((teacher) => teacher.source?.importId === proposal.importId).length,
+          });
+          if (saved.duplicate) {
+            sendJson(response, 200, {
+              ...saved.input,
+              importReport: {
+                fileName: proposal.fileName,
+                alreadyImported: true,
+                existingImport: saved.duplicate,
+              },
+            });
+            return;
+          }
+          input = saved.input;
+          importedFile = saved.import;
+        } else {
+          removeResolvedEmptySectionReviews(input);
+          store.saveInput(input);
+        }
+        sendJson(response, 200, {
+          ...input,
+          importReport: {
+            fileName: proposal.fileName,
+            warnings: converted.warnings,
+            skipped: converted.skipped,
+            importedFile,
+          },
+        });
         return;
       }
 
@@ -230,6 +306,7 @@ function createServer({
 
       if (request.method === "POST" && pathname === "/api/data/confirm") {
         const input = store.getInput() ?? emptyInput();
+        removeResolvedEmptySectionReviews(input);
         if (input.review.length) throw workflowError("not_confirmed", errorMessages.not_confirmed);
         const validation = validateInput(input);
         if (validation.length) {
@@ -288,7 +365,16 @@ function createServer({
         const run = requireRun(runs, id);
 
         if (request.method === "GET" && action === "") {
-          sendJson(response, 200, run);
+          const after = url.searchParams.has("after")
+            ? Number(url.searchParams.get("after"))
+            : 0;
+          if (!Number.isSafeInteger(after) || after < 0) {
+            throw workflowError("bad_input", errorMessages.bad_input);
+          }
+          sendJson(response, 200, {
+            ...run,
+            logs: runs.getLogs(id, after),
+          });
           return;
         }
         if (request.method === "POST" && action === "cancel") {
@@ -359,8 +445,9 @@ function createServer({
 
 if (require.main === module) {
   const server = createServer();
-  server.listen(5000, "127.0.0.1", () => {
-    console.log("TimeTableMaker listening on http://127.0.0.1:5000");
+  const port = Number(process.env.PORT ?? 5000);
+  server.listen(port, "127.0.0.1", () => {
+    console.log(`TimeTableMaker listening on http://127.0.0.1:${port}`);
   });
 }
 

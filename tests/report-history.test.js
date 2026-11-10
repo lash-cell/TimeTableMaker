@@ -55,8 +55,9 @@ test("choosing a run is exclusive and refuses a non-feasible result", () => {
     const input = fixture("F2");
     const first = store.create({ id: "run-first", createdAt: "2025-01-01T00:00:00.000Z", input });
     const second = store.create({ id: "run-second", createdAt: "2025-01-02T00:00:00.000Z", input });
-    store.finish(first.id, { status: "feasible", lessons: [] });
-    store.finish(second.id, { status: "feasible", lessons: [] });
+    const validatedResult = { status: "feasible", lessons: [], report: { violations: [] } };
+    store.finish(first.id, validatedResult);
+    store.finish(second.id, validatedResult);
 
     assert.equal(store.choose(first.id).chosen, true);
     assert.equal(store.choose(second.id).chosen, true);

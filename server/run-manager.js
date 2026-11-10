@@ -10,6 +10,7 @@ class RunManager {
     this.logger = logger;
     this.timeLimitMs = timeLimitMs;
     this.active = new Map();
+    this.closed = false;
   }
 
   start(input) {
@@ -20,22 +21,77 @@ class RunManager {
       input: JSON.parse(JSON.stringify(input)),
     });
     const controller = new AbortController();
-    this.active.set(run.id, controller);
-    setImmediate(() => this.execute(run, controller));
-    return run;
+    const activeRun = { controller, startedAt: performance.now() };
+    this.active.set(run.id, activeRun);
+    this.log(run.id, activeRun, "INFO", "Plan", "เริ่มรับข้อมูลสำหรับการจัดตาราง", {
+      groups: input.groups.length,
+      courses: input.courses.length,
+      teachers: input.teachers.length,
+      rooms: input.rooms.length,
+    });
+    setImmediate(() => this.execute(run, activeRun));
+    return { ...run, logs: this.store.getLogs(run.id) };
   }
 
-  async execute(run, controller) {
+  log(id, activeRun, level, phase, message, details = null) {
+    if (this.closed) return;
+    this.store.addLog(id, {
+      timestamp: new Date().toISOString(),
+      elapsedMs: Math.max(0, performance.now() - activeRun.startedAt),
+      level,
+      phase,
+      message,
+      details,
+    });
+  }
+
+  async execute(run, activeRun) {
+    const { controller } = activeRun;
     try {
       const result = await this.solver(run.input, {
         signal: controller.signal,
         timeLimitMs: this.timeLimitMs,
+        onProgress: (event) => this.log(
+          run.id,
+          activeRun,
+          event.level,
+          event.phase,
+          event.message,
+          event.details,
+        ),
       });
       this.store.finish(run.id, result);
+      const feasible = result.status === "feasible" &&
+        Array.isArray(result.report?.violations) &&
+        result.report.violations.length === 0;
+      this.log(
+        run.id,
+        activeRun,
+        feasible ? "SUCCESS" : result.status === "invalidInput" ? "ERROR" : "WARNING",
+        "Validate",
+        feasible
+          ? "Engine และ Validator ตรวจผลลัพธ์ผ่านแล้ว"
+          : `Engine จบการทำงานด้วยสถานะ ${result.status}`,
+        {
+          status: result.status,
+          violations: result.report?.violations?.length ?? null,
+          solverStatus: result.stats?.solverStatus ?? null,
+          elapsedMs: result.stats?.bridgeMs ?? result.stats?.ms ?? null,
+        },
+      );
     } catch (error) {
       if (!controller.signal.aborted) {
         this.logger.error("Timetable run failed:", error);
+        this.log(run.id, activeRun, "ERROR", "Engine", error.message, {
+          name: error.name,
+          violations: error.violations ?? [],
+          cause: error.cause?.message ?? null,
+        });
         this.store.fail(run.id, "Timetable generation failed. Check the server log for details.");
+      } else {
+        this.log(run.id, activeRun, "WARNING", "Engine", "การทำงานถูกยกเลิกตามคำขอ", {
+          status: "cancelled",
+        });
       }
     } finally {
       this.active.delete(run.id);
@@ -44,6 +100,10 @@ class RunManager {
 
   get(id) {
     return this.store.get(id);
+  }
+
+  getLogs(id, after = 0) {
+    return this.store.getLogs(id, after);
   }
 
   list() {
@@ -62,12 +122,17 @@ class RunManager {
 
   cancel(id) {
     const run = this.store.cancel(id);
-    this.active.get(id)?.abort();
+    const activeRun = this.active.get(id);
+    if (activeRun) {
+      this.log(id, activeRun, "WARNING", "Engine", "ได้รับคำขอยกเลิกการจัดตาราง");
+      activeRun.controller.abort();
+    }
     return run;
   }
 
   close() {
-    for (const controller of this.active.values()) controller.abort();
+    this.closed = true;
+    for (const { controller } of this.active.values()) controller.abort();
     this.store.close();
   }
 }
